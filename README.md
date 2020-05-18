@@ -1,0 +1,6 @@
+1. Create build directory ( `mkdir build` )
+2. Move to build directory ( `cd build` )
+3. Configure build ( `cmake ..` )
+4. Build ( `make` )
+5. Place config.cfg from project root directory to directory with game executable ( `cp ../config.cfg ./ ` )
+6. Run game ( `./alphabetloop_game` )
