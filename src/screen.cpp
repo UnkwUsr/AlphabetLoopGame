@@ -90,8 +90,6 @@ void Screen::printString(const char* str, bool isfirstframe, bool islastframe, i
 	if(islastframe)
 		refresh();
 }
-// TODO: может ещеё написать функцию для получения currentY и X
-// P.S. впринципе если ещё написать эту функцию, то наверное можно будет drawMap перенести в functions
 
 
 void Screen::drawDialogChangeHightLightingLetters()

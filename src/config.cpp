@@ -73,7 +73,7 @@ void Config::parseLine(std::string line)
 void Config::getNextWord(std::istringstream *lnstream, std::string *next_word)
 {
     getline(*lnstream, *next_word, ' ');
-    if(*next_word == "") // TODO: wrong compare, pls fix
+    if(*next_word == "")
         throw 1337;
 }
 

@@ -3,6 +3,7 @@
 #include "screen.h"
 #include "input.h"
 #include "config.h"
+#include "control.h"
 
 
 class Game {
@@ -13,11 +14,25 @@ class Game {
 		void start();
 		bool isTryAgain();
 
-		void drawMap();
 	private:
 		Map *map;
 		Screen *screen;
 		Input *input;
 		Functions *functions;
 		Config *config;
+        Control *control;
+
+        void initNewGame();
+
+        void doControl();
+
+		bool isexit;
+		bool istryagain;
+
+		void exit();
+		void restart();
+		void finish();
+
+		void exitQuestion();
+
 };

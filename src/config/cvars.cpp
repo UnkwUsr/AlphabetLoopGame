@@ -16,11 +16,11 @@ int VERT_SPACES_NUM = HORIZ_SPACES_NUM / 2;
 
 // functions
 std::string RECORDS_FILENAME = "records.txt";
+bool AUTO_UNDO_SAME_SCROLLS = true;
+// debug
+bool RANDOMIZE_MAP = true;
 int MIN_RAND_STEPS = 100;
 int MAX_RAND_STEPS = 500;
-bool RANDOMIZE_MAP = true;
-bool AUTO_UNDO_SAME_SCROLLS = true;
-
 
 Cvars::Cvars()
 {
@@ -39,10 +39,11 @@ Cvars::Cvars()
 
     // functions
     initCvar("records_filename", &RECORDS_FILENAME, TYPE_STR);
+    initCvar("auto_undo_same_scrolls", &AUTO_UNDO_SAME_SCROLLS, TYPE_BOOL);
+    // debug
     initCvar("min_rand_steps", &MIN_RAND_STEPS, TYPE_INT);
     initCvar("max_rand_steps", &MAX_RAND_STEPS, TYPE_INT);
     initCvar("randomize_map", &RANDOMIZE_MAP, TYPE_BOOL);
-    initCvar("auto_undo_same_scrolls", &AUTO_UNDO_SAME_SCROLLS, TYPE_BOOL);
 }
 
 void Cvars::initCvar(std::string name, void* ptr, int type)
