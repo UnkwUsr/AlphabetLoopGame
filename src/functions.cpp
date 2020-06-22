@@ -4,13 +4,24 @@
 #include <fstream>
 
 
-Functions::Functions(Screen* scr, Input* inp, Config* cnfg, Map* mp) : screen(scr), input(inp), config(cnfg), map(mp)
+Functions::Functions(Screen* scr, Input* inp, Map* mp) : screen(scr), input(inp), map(mp)
 {
+    timer = new Timer();
 }
 
 Functions::~Functions()
 {
-	saveConfig();
+}
+
+void Functions::onNewGame()
+{
+    timer->reset();
+}
+
+void Functions::onFrame()
+{
+    if(!timer->isPaused())
+        drawTimer();
 }
 
 bool Functions::resolveAction(std::string act)
@@ -73,6 +84,16 @@ void Functions::seeCompletedMap()
 	timer->continu();
 }
 
+std::string Functions::getTimerTime()
+{
+    return timer->getDifferentStringify();
+}
+
+void Functions::drawTimer()
+{
+    std::string time = getTimerTime();
+    screen->drawTimer(time);
+}
 
 void Functions::writeRecordInFile(std::string time, unsigned int amountscrolls)
 {
@@ -86,38 +107,3 @@ void Functions::writeRecordInFile(std::string time, unsigned int amountscrolls)
 	}
 }
 
-
-
-
-void Functions::saveConfig()
-{
-	// TODO: если config.cfg не обнаржуен, то нужно самому создавать его, и записывать стандартные настройки + управление для карты 5x5 (то есть квары и бинды)
-	// // if(saveconfig)
-	// std::ofstream configfile(config->FILENAME);
-
-	// for(auto &item : cvars_list)
-	// {
-	// 	std::string name = item.first;
-	// 	configfile << name << " ";
-
-	// 	cvar cvr = item.second;
-	// 	if(cvr.type == CVAR_INT)
-	// 	{
-	// 		int* int_ptr = static_cast<int*>(cvr.ptr);
-	// 		configfile << *int_ptr;
-	// 	}
-	// 	else if(cvr.type == CVAR_STR)
-	// 	{
-	// 		std::string* string_ptr = static_cast<std::string*>(cvr.ptr);
-	// 		configfile << *string_ptr;
-	// 	}
-	// 	else if(cvr.type == CVAR_BOOL)
-	// 	{
-	// 		bool* string_ptr = static_cast<bool*>(cvr.ptr);
-	// 		configfile << *string_ptr;
-	// 	}
-	// 	configfile << std::endl;
-	// }
-
-	// configfile.close();
-}

@@ -4,33 +4,34 @@
 #include "screen.h"
 #include "input.h"
 #include "map.h"
-#include "config.h"
 
 #include "functions/timer.h"
 
 
 class Functions {
 	public:
-		Functions(Screen* scr, Input* inp, Config* cnfg, Map* mp);
+		Functions(Screen* scr, Input* inp, Map* mp);
 		~Functions();
 
+        void onNewGame();
+        void onFrame();
         bool resolveAction(std::string act);
 
-        Timer* timer;
+        std::string getTimerTime();
+
+        void writeRecordInFile(std::string time, unsigned int amountscrolls);
 
 	private:
 		Screen* screen;
 		Input* input;
-		Config* config;
 		Map* map;
 
-
-		void saveConfig();
+        Timer* timer;
 
 		void changeHighLightingLetters();
 		void seeCompletedMap();
 
-		void writeRecordInFile(std::string time, unsigned int amountscrolls);
+        void drawTimer();
 };
 
 #endif

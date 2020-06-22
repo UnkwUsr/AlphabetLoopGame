@@ -7,6 +7,8 @@
 Config::Config()
 {
     cvars = new Cvars();
+
+    readConfig();
 }
 
 Config::~Config()
@@ -101,4 +103,36 @@ std::string Config::getActionByKey(char key)
         return it->second;
     else
         return ACTION_NULL;
+}
+
+void Config::saveConfig()
+{
+    /* std::ofstream configfile(FILENAME); */
+
+    // TODO: in class Cvars add function getCvarsList and get it there
+    /* for(auto &item : cvars->cvars_list) */
+    /* { */
+    /*     std::string name = item.first; */
+    /*     configfile << name << " "; */
+
+    /*     cvar cvr = item.second; */
+    /*     if(cvr.type == CVAR_INT) */
+    /*     { */
+    /*         int* int_ptr = static_cast<int*>(cvr.ptr); */
+    /*         configfile << *int_ptr; */
+    /*     } */
+    /*     else if(cvr.type == CVAR_STR) */
+    /*     { */
+    /*         std::string* string_ptr = static_cast<std::string*>(cvr.ptr); */
+    /*         configfile << *string_ptr; */
+    /*     } */
+    /*     else if(cvr.type == CVAR_BOOL) */
+    /*     { */
+    /*         bool* string_ptr = static_cast<bool*>(cvr.ptr); */
+    /*         configfile << *string_ptr; */
+    /*     } */
+    /*     configfile << std::endl; */
+    /* } */
+
+    /* configfile.close(); */
 }

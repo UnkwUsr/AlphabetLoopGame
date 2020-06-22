@@ -1,11 +1,17 @@
 #include "functions/timer.h"
 
 
-Timer::Timer() : start(time(NULL)), pausedtime(0)
+Timer::Timer()
 {
-
 }
 
+void Timer::reset()
+{
+    start = time(NULL);
+    pausedtime = 0;
+
+    ispaused = false;
+}
 
 std::string Timer::getDifferentStringify()
 {
@@ -19,6 +25,13 @@ std::string Timer::getDifferentStringify()
 void Timer::pause()
 {
 	pausestart = time(NULL);
+
+    ispaused = true;
+}
+
+bool Timer::isPaused()
+{
+    return ispaused;
 }
 
 void Timer::continu()
@@ -26,4 +39,6 @@ void Timer::continu()
 	time_t lossedtime = time(NULL) - pausestart;
 
 	pausedtime += lossedtime;
+
+    ispaused = false;
 }

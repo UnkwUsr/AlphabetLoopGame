@@ -1,7 +1,6 @@
 #include "game.h"
 
 
-
 Game::Game()
 {
 	screen = new Screen();
@@ -10,10 +9,9 @@ Game::Game()
 	map = new Map();
 
 	config = new Config();
-	functions = new Functions(screen, input, config, map);
-    control = new Control(map);
 
-	config->readConfig();
+	functions = new Functions(screen, input, map);
+    control = new Control(map);
 
     map->Init();
 
@@ -36,14 +34,14 @@ void Game::initNewGame()
     isexit = false;
     istryagain = false;
 
-    control->amountscrolls = 0;
-    functions->timer = new Timer();
+    functions->onNewGame();
+
     srand(time(NULL));
 
     map->reset();
-
     control->randomizeMap();
     control->scrolls_history.clear();
+    control->amountscrolls = 0;
 }
 
 void Game::start()
@@ -53,6 +51,7 @@ void Game::start()
 	while(!isexit)
 	{
 		screen->draw(map);
+        functions->onFrame();
 
 		doControl();
 
@@ -113,10 +112,9 @@ void Game::restart()
 
 void Game::finish()
 {
-    std::string time = functions->timer->getDifferentStringify();
-    delete functions->timer;
+    std::string time = functions->getTimerTime();
 
-    /* writeRecordInFile(time, control->amountscrolls); */
+    functions->writeRecordInFile(time, control->amountscrolls);
     screen->printString("YOU WIN!!!\n\n", true);
 
     screen->printString(("Your time: " + time + ".\n").c_str());

@@ -13,15 +13,16 @@ class Config {
         Config();
         ~Config();
 
-        const char* FILENAME = "config.cfg";
-
         std::string getActionByKey(char key);
         std::string ACTION_NULL = "";
 
         std::map<char, std::string> binds;
         void bindKey(char key, std::string command);
-        void readConfig();
     private:
+        const char* FILENAME = "config.cfg";
+        void readConfig();
+        void saveConfig();
+
         Cvars* cvars;
 
         void parseLine(std::string line);

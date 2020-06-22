@@ -19,6 +19,7 @@ class Screen {
 
 		void drawCompletedMap(Map* map);
 
+        void drawTimer(std::string time);
 
 		void printSymbol(char a);
 		void eraseSymbol();

@@ -77,6 +77,7 @@ void Screen::drawBlockLetter(int starty, int startx, std::string letter)
 }
 
 
+/* void printString(const char* str, bool isfirstframe = false, bool islastframe = false, int y = -1, int x = -1); */
 void Screen::printString(const char* str, bool isfirstframe, bool islastframe, int y, int x)
 {
 	if(isfirstframe)
@@ -111,6 +112,11 @@ void Screen::drawCompletedMap(Map* map)
 	mvprintw(row - 1, 0, "Is completed map, press any key for return to game.");
 }
 
+void Screen::drawTimer(std::string time)
+{
+    mvprintw(row - 2, 0, "Time: ");
+    printw(time.c_str());
+}
 
 
 void Screen::eraseSymbol()
