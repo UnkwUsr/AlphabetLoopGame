@@ -20,4 +20,3 @@ extern int MIN_RAND_STEPS;
 extern int MAX_RAND_STEPS;
 extern bool RANDOMIZE_MAP;
 extern bool AUTO_UNDO_SAME_SCROLLS;
-// TODO: maybe unsigned int for some cvars

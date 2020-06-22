@@ -1,8 +1,10 @@
 #include "config.h"
-#include "config/cvars.h"
 
 #include <fstream>
 #include <sstream>
+
+#include "logging.h"
+
 
 Config::Config()
 {
@@ -20,12 +22,17 @@ void Config::readConfig()
 {
     std::ifstream configfile(FILENAME);
 
-    if(configfile.is_open())
+    if(configfile.good())
     {
-        std::string line;
-        while(getline(configfile, line))
-            parseLine(line);
+        if(configfile.is_open())
+        {
+            std::string line;
+            while(getline(configfile, line))
+                parseLine(line);
+        }
     }
+    else
+        logfile << "config.cfg does not exist" << std::endl;
 }
 
 void Config::parseLine(std::string line)
@@ -58,8 +65,6 @@ void Config::parseLine(std::string line)
         }
         else if(keyword_type == KEYWORD_BIND)
         {
-            // TODO: написать чтобы можно было биндить такие кнопки как F1, ENTER, и т.д.
-            // в Input добавить std::map<std::string, int> special_keys
             std::string key;
             getNextWord(&lnstream, &key);
             std::string action;
