@@ -84,6 +84,33 @@ void Cvars::setCvarValue(std::string name, std::string value)
     }
 }
 
+void Cvars::writeCvars(std::ofstream &configfile)
+{
+    for(auto &item : cvars_list)
+    {
+        std::string name = item.first;
+        configfile << "cvar " << name << " ";
+
+        Cvars::cvar cvr = item.second;
+        if(cvr.type == TYPE_INT)
+        {
+            int* int_ptr = static_cast<int*>(cvr.ptr);
+            configfile << *int_ptr;
+        }
+        else if(cvr.type == TYPE_STR)
+        {
+            std::string* string_ptr = static_cast<std::string*>(cvr.ptr);
+            configfile << *string_ptr;
+        }
+        else if(cvr.type == TYPE_BOOL)
+        {
+            bool* string_ptr = static_cast<bool*>(cvr.ptr);
+            configfile << *string_ptr;
+        }
+        configfile << std::endl;
+    }
+}
+
 // DEBUG func:
 void* Cvars::getCvar(const char* name)
 {

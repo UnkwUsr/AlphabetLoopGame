@@ -19,9 +19,9 @@ class Config {
         std::map<char, std::string> binds;
         void bindKey(char key, std::string command);
     private:
-        const char* FILENAME = "config.cfg";
+        const char* CONFIG_FILENAME = "config.cfg";
         void readConfig();
-        void saveConfig();
+        void writeConfig();
 
         Cvars* cvars;
 

@@ -48,7 +48,7 @@ bool Control::resolveAction(std::string act)
     {
         scroll_arg scroll = it->second;
 
-        bool temp = false; // TOOD: пофиксить вот это, ибо пришлось наговнокодить
+        bool temp = false;
         if(AUTO_UNDO_SAME_SCROLLS && !scrolls_history.empty())
         {
             scroll_arg lastscroll = scrolls_history.back();

@@ -20,7 +20,7 @@ Config::~Config()
 
 void Config::readConfig()
 {
-    std::ifstream configfile(FILENAME);
+    std::ifstream configfile(CONFIG_FILENAME);
 
     if(configfile.good())
     {
@@ -32,12 +32,37 @@ void Config::readConfig()
         }
     }
     else
-        logfile << "config.cfg does not exist" << std::endl;
+    {
+        bindKey('o', "see_completed_map");
+        bindKey('i', "set_highlighting");
+
+        bindKey('u', "undo_scroll");
+        // by default map has size 5x5, so we generate bindings for it
+        std::string horizontal_swipes = "asdfg";
+        std::string vertical_swipes = "zxcvb";
+        int i = 0;
+        for(char m : horizontal_swipes)
+        {
+            bindKey(m, "scroll_left_" + std::to_string(i));
+            bindKey(toupper(m), "scroll_right_" + std::to_string(i));
+            i++;
+        }
+        i = 0;
+        for(char m : vertical_swipes)
+        {
+            bindKey(m, "scroll_up_" + std::to_string(i));
+            bindKey(toupper(m), "scroll_down_" + std::to_string(i));
+            i++;
+        }
+
+        writeConfig();
+    }
 }
 
 void Config::parseLine(std::string line)
 {
-    if(line == "") return;
+    if(line == "")
+        return;
 
     try
     {
@@ -110,34 +135,22 @@ std::string Config::getActionByKey(char key)
         return ACTION_NULL;
 }
 
-void Config::saveConfig()
+void Config::writeConfig()
 {
-    /* std::ofstream configfile(FILENAME); */
+    std::ofstream configfile(CONFIG_FILENAME);
 
-    // TODO: in class Cvars add function getCvarsList and get it there
-    /* for(auto &item : cvars->cvars_list) */
-    /* { */
-    /*     std::string name = item.first; */
-    /*     configfile << name << " "; */
+    configfile << "// Cvars:" << std::endl;
+    cvars->writeCvars(configfile);
+    configfile << std::endl;
 
-    /*     cvar cvr = item.second; */
-    /*     if(cvr.type == CVAR_INT) */
-    /*     { */
-    /*         int* int_ptr = static_cast<int*>(cvr.ptr); */
-    /*         configfile << *int_ptr; */
-    /*     } */
-    /*     else if(cvr.type == CVAR_STR) */
-    /*     { */
-    /*         std::string* string_ptr = static_cast<std::string*>(cvr.ptr); */
-    /*         configfile << *string_ptr; */
-    /*     } */
-    /*     else if(cvr.type == CVAR_BOOL) */
-    /*     { */
-    /*         bool* string_ptr = static_cast<bool*>(cvr.ptr); */
-    /*         configfile << *string_ptr; */
-    /*     } */
-    /*     configfile << std::endl; */
-    /* } */
+    configfile << "// Binds:" << std::endl;
+    for(auto &item : binds)
+    {
+        const char key = item.first;
+        std::string act = item.second;
 
-    /* configfile.close(); */
+        configfile << "bind " << key << " " << act << std::endl;
+    }
+
+    configfile.close();
 }

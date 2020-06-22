@@ -16,7 +16,8 @@ extern int VERT_SPACES_NUM;
 
 // functions
 extern std::string RECORDS_FILENAME;
+extern bool AUTO_UNDO_SAME_SCROLLS;
+// debug
+extern bool RANDOMIZE_MAP;
 extern int MIN_RAND_STEPS;
 extern int MAX_RAND_STEPS;
-extern bool RANDOMIZE_MAP;
-extern bool AUTO_UNDO_SAME_SCROLLS;
