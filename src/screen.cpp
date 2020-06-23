@@ -97,7 +97,7 @@ void Screen::drawDialogChangeHightLightingLetters()
 {
 	predraw();
 
-	printw("Enter string with letters who you want to highlighting:\n");
+	printw("Enter letters that you want highlight:\n");
 	printw(highlightingletters.c_str());
 
 	refresh();

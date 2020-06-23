@@ -3,17 +3,16 @@
 
 #include <string>
 
+#include "logging.h"
+
 
 Map::Map()
-{}
-
-void Map::Init()
 {
 	maplen = HORIZ_LEN * VERT_LEN;
 	if(maplen <= TEMPLATE_MAP_STR.length())
 		solvedmapstr = TEMPLATE_MAP_STR.substr(0, maplen);
 	else
-		throw("Too long HORIZ_LEN/VERT_LEN value");
+        logfile << "Too long HORIZ_LEN/VERT_LEN value" << std::endl;
 }
 
 void Map::reset()

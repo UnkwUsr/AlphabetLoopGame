@@ -7,7 +7,6 @@ class Map {
 	public:
 		Map();
 		void reset();
-		void Init();
 
 		bool isCompleted();
 

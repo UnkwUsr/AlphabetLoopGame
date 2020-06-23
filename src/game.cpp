@@ -3,20 +3,15 @@
 
 Game::Game()
 {
+    config = new Config();
+
 	screen = new Screen();
 	input = new Input();
 
 	map = new Map();
 
-	config = new Config();
-
 	functions = new Functions(screen, input, map);
     control = new Control(map);
-
-    map->Init();
-
-    config->bindKey('q', "exit");
-    config->bindKey('r', "restart");
 }
 
 Game::~Game()
@@ -29,7 +24,7 @@ Game::~Game()
 	delete control;
 }
 
-void Game::initNewGame()
+void Game::newGame()
 {
     isexit = false;
     istryagain = false;
@@ -46,7 +41,7 @@ void Game::initNewGame()
 
 void Game::start()
 {
-	initNewGame();
+	newGame();
 
 	while(!isexit)
 	{

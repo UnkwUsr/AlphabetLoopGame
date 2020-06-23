@@ -22,7 +22,7 @@ class Game {
 		Config *config;
         Control *control;
 
-        void initNewGame();
+        void newGame();
 
         void doControl();
 

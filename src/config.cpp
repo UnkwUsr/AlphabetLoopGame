@@ -30,13 +30,18 @@ void Config::readConfig()
             while(getline(configfile, line))
                 parseLine(line);
         }
+        else
+            logfile << "Can't open config file" << std::endl;
     }
     else
     {
+        bindKey('q', "exit");
+        bindKey('r', "restart");
+
         bindKey('o', "see_completed_map");
         bindKey('i', "set_highlighting");
 
-        bindKey('u', "undo_scroll");
+        bindKey('w', "undo_scroll");
         // by default map has size 5x5, so we generate bindings for it
         std::string horizontal_swipes = "asdfg";
         std::string vertical_swipes = "zxcvb";
@@ -105,8 +110,6 @@ void Config::parseLine(std::string line)
 void Config::getNextWord(std::istringstream *lnstream, std::string *next_word)
 {
     getline(*lnstream, *next_word, ' ');
-    if(*next_word == "")
-        throw 1337;
 }
 
 int Config::parseKeyWord(std::string *word)
