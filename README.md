@@ -22,6 +22,20 @@ Pressing `o` will show you completed map (press any key for continue playing).
 
 And `q` and `r` respectively for close the game and restart.
 
+## Config
+`alphabetloop_game` will load `config.cfg` file from the same folder from which
+game was launched.
+
+In addition to binds described in the [Playing](#Playing) section, there
+are also other settings, like:
+* *hack* options (useful for debug)
+* map size settings
+* display settings
+* ... and more
+
+For more information go to provided [config example](./config.cfg) with
+comments.
+
 ## Inspiration
 Inspired by carykh's [video](https://www.youtube.com/watch?v=95rtiz-V2zM) on
 youtube. I wanted to play this game on keyboard and in console, so got this.
