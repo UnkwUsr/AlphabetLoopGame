@@ -1,4 +1,6 @@
-Rubik's cube game like, but in 2d
+Rubik's cube game like, but in 2d.
+
+<img src="https://user-images.githubusercontent.com/49063932/150001991-a63f3bcb-f6cc-4440-83f8-23671db8cc77.png" alt="demo image"/>
 
 ## Build
 1. Create build directory ( `mkdir build` )
